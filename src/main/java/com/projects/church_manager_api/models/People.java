@@ -22,6 +22,12 @@ public class People {
     private String lastName;
 
     @Column
+    private String phoneNumber;
+
+    @Column
+    private String emailAddress;
+
+    @Column
     private boolean memberRecordCreated;
 
     @Column
@@ -34,6 +40,10 @@ public class People {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "profileId", referencedColumnName = "id")
     private Profiles profile;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "householdId", referencedColumnName = "id")
+    private Households household;
 
 
     public Long getId() {
@@ -82,5 +92,45 @@ public class People {
 
     public void setProfileCreated(boolean profileCreated) {
         this.profileCreated = profileCreated;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getEmailAddress() {
+        return emailAddress;
+    }
+
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
+    }
+
+    public MemberRecord getMemberRecord() {
+        return memberRecord;
+    }
+
+    public void setMemberRecord(MemberRecord memberRecord) {
+        this.memberRecord = memberRecord;
+    }
+
+    public Profiles getProfile() {
+        return profile;
+    }
+
+    public void setProfile(Profiles profile) {
+        this.profile = profile;
+    }
+
+    public Households getHousehold() {
+        return household;
+    }
+
+    public void setHousehold(Households household) {
+        this.household = household;
     }
 }
