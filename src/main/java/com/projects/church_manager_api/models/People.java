@@ -46,6 +46,10 @@ public class People {
     @JoinColumn(name = "profile_Id", referencedColumnName = "id")
     private Profiles profile;
 
+    @ManyToOne()
+    @JsonIgnoreProperties({"groups", "adults"})
+    private Households household;
+
 
 
     public People() {
@@ -138,6 +142,14 @@ public class People {
 
     public void setGroups(Set<Groups> groups) {
         this.groups = groups;
+    }
+
+    public Households getHousehold() {
+        return household;
+    }
+
+    public void setHousehold(Households household) {
+        this.household = household;
     }
 //
 //    public Households getHousehold() {
