@@ -1,7 +1,11 @@
 package com.projects.church_manager_api.models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import net.minidev.json.annotate.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "people")
@@ -28,22 +32,32 @@ public class People {
     private String emailAddress;
 
     @Column
-    private boolean memberRecordCreated;
+    private boolean isDeleted = false;
 
-    @Column
-    private boolean profileCreated;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "personId", referencedColumnName = "id")
-    private MemberRecord memberRecord;
+    @ManyToMany(mappedBy = "members")
+    @JsonIgnoreProperties("members")
+    private Set<Groups> groups;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "profileId", referencedColumnName = "id")
+    @JoinColumn(name = "memberRecord_id", referencedColumnName = "id")
+    private MemberRecords memberRecord;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "profile_Id", referencedColumnName = "id")
     private Profiles profile;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "householdId", referencedColumnName = "id")
-    private Households household;
+
+
+    public People() {
+    }
+
+    public People(String firstName, String middleName, String lastName, String phoneNumber, String emailAddress) {
+        this.firstName = firstName;
+        this.middleName = middleName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+        this.emailAddress = emailAddress;
+    }
 
 
     public Long getId() {
@@ -78,22 +92,6 @@ public class People {
         this.lastName = lastName;
     }
 
-    public boolean isMemberRecordCreated() {
-        return memberRecordCreated;
-    }
-
-    public void setMemberRecordCreated(boolean memberRecordCreated) {
-        this.memberRecordCreated = memberRecordCreated;
-    }
-
-    public boolean isProfileCreated() {
-        return profileCreated;
-    }
-
-    public void setProfileCreated(boolean profileCreated) {
-        this.profileCreated = profileCreated;
-    }
-
     public String getPhoneNumber() {
         return phoneNumber;
     }
@@ -110,11 +108,19 @@ public class People {
         this.emailAddress = emailAddress;
     }
 
-    public MemberRecord getMemberRecord() {
+    public boolean isDeleted() {
+        return isDeleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        isDeleted = deleted;
+    }
+
+    public MemberRecords getMemberRecord() {
         return memberRecord;
     }
 
-    public void setMemberRecord(MemberRecord memberRecord) {
+    public void setMemberRecord(MemberRecords memberRecord) {
         this.memberRecord = memberRecord;
     }
 
@@ -126,11 +132,19 @@ public class People {
         this.profile = profile;
     }
 
-    public Households getHousehold() {
-        return household;
+    public Set<Groups> getGroups() {
+        return groups;
     }
 
-    public void setHousehold(Households household) {
-        this.household = household;
+    public void setGroups(Set<Groups> groups) {
+        this.groups = groups;
     }
+//
+//    public Households getHousehold() {
+//        return household;
+//    }
+//
+//    public void setHousehold(Households household) {
+//        this.household = household;
+//    }
 }

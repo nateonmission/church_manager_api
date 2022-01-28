@@ -12,9 +12,8 @@ public class Profiles {
     private Long id;
 
     @Column
-    @OneToOne(mappedBy = "profile")
-    private People person;
-
+    private String profileCreatedDate;
+//
     @Column
     private boolean married;
 
@@ -31,14 +30,6 @@ public class Profiles {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public People getPerson() {
-        return person;
-    }
-
-    public void setPerson(People person) {
-        this.person = person;
     }
 
     public boolean isMarried() {
@@ -63,5 +54,13 @@ public class Profiles {
 
     public void setAnniversaryDate(String anniversaryDate) {
         AnniversaryDate = anniversaryDate;
+    }
+
+    public String getProfileCreatedDate() {
+        return profileCreatedDate;
+    }
+
+    public void setProfileCreatedDate(String profileCreatedDate) {
+        this.profileCreatedDate = profileCreatedDate;
     }
 }
