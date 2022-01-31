@@ -1,5 +1,18 @@
-* README
+* Church Management Application
 
+** Introduction
+
+
+** Technology
+
+
+**Installation
+
+
+** Use of the Application
+
+
+** API URL and Endpoints
 ``
 https://church-mgr-proj.herokuapp.com/api/v1/
 ``
@@ -33,4 +46,9 @@ https://church-mgr-proj.herokuapp.com/api/v1/
 | PUT    | /groups/{id}/removeLeader/{id}      | Removes an individual Leader from the group             ||
 | PUT    | /groups/{id}/addMember/{id}         | Adds an individual Member to the group                  ||
 | PUT    | /groups/{id}/removeMember/{id}      | Removes an individual Member from the group             ||
+
+** Problems and Overcoming Them
+
+
+** Future Opportunities
 
