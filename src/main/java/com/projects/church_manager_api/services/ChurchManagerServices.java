@@ -60,7 +60,7 @@ public class ChurchManagerServices {
     public People createPerson(People personObject) {
         LOGGER.info("service calling createPerson ==>");
 
-        Optional<People> person = peopleRepository.findByEmailAddress(personObject.getEmailAddress());
+        Optional<People>  person = peopleRepository.findByEmailAddressAndFirstName(personObject.getEmailAddress(), personObject.getFirstName());
         if (person.isPresent() ) {
             if(person.get().isDeleted()){
                 person.get().setDeleted(false);
@@ -113,14 +113,28 @@ public class ChurchManagerServices {
         }
     }
 
-    // GET a single person
-    public Optional getPersonByEmailAddress(String emailAddress) {
-        LOGGER.info("service calling getPersonByEmailAddress ==>");
-        Optional person = peopleRepository.findByEmailAddress(emailAddress);
-        if (person.isPresent()) {
-            return person;
+    // GET a list of people by Phone Number
+    public People getPersonById(Long id) {
+        LOGGER.info("service calling getPersonById ==>");
+        Optional<People> people = peopleRepository.findById(id);
+
+        if(!people.isPresent()) {
+            throw new InfoNotFound("Cannot retrieve people with id "
+                    + id + ". It does not exist");
         } else {
-            throw new InfoNotFound("Person with email " + emailAddress + "not found");
+            System.out.println(people.get().getFirstName());
+            return people.get();
+        }
+    }
+    // GET a list of people by Phone Number
+    public Set<People> getPersonByEmailAddress(String emailAddress) {
+        LOGGER.info("service calling getPersonByPhoneNumber ==>");
+        Set<People> people = peopleRepository.findByEmailAddress(emailAddress);
+        if(people.isEmpty()) {
+            throw new InfoNotFound("Cannot retrieve people with Phone number "
+                    + emailAddress + ". It does not exist");
+        } else {
+            return people;
         }
     }
 
@@ -151,9 +165,108 @@ public class ChurchManagerServices {
         }
     }
 
+    // PUT Add a spouse to a person api/groups/{groupsId}/addStaffSup/{personId}
+    public People addSpouseById(Long id, Long spouseId) {
+        LOGGER.info("service calling addSpouseById method ==> ");
+        Optional<People> person = peopleRepository.findById(id);
+        if (person.isEmpty()) {
+            throw new InfoNotFound("person with id " + id + " not found");
+        } else {
+            Optional<People> spouse = peopleRepository.findById(spouseId);
+            if (spouse.isEmpty()) {
+                throw new InfoNotFound("person with id " + spouseId + " not found");
+            } else {
+                person.get().setSpouse(spouse.get());
+                return peopleRepository.save(person.get());
+            }
+        }
+    }
+
+    // PUT Add a child to a person api/groups/{groupsId}/addStaffSup/{personId}
+    public People addChildById(Long id, Long childId) {
+        LOGGER.info("service calling addSpouseById method ==> ");
+        Optional<People> person = peopleRepository.findById(id);
+        if (person.isEmpty()) {
+            throw new InfoNotFound("person with id " + id + " not found");
+        } else {
+            Optional<People> child = peopleRepository.findById(childId);
+            if (child.isEmpty()) {
+                throw new InfoNotFound("person with id " + childId + " not found");
+            } else {
+                person.get().setChild(child.get());
+                return peopleRepository.save(person.get());
+            }
+        }
+    }
+
+    // PUT Add a parent to a person api/groups/{groupsId}/addStaffSup/{personId}
+    public People addParentById(Long id, Long parentId) {
+        LOGGER.info("service calling addParentById method ==> ");
+        Optional<People> person = peopleRepository.findById(id);
+        if (person.isEmpty()) {
+            throw new InfoNotFound("person with id " + id + " not found");
+        } else {
+            Optional<People> parent = peopleRepository.findById(parentId);
+            if (parent.isEmpty()) {
+                throw new InfoNotFound("person with id " + parentId + " not found");
+            } else {
+                person.get().setParent(parent.get());
+                return peopleRepository.save(person.get());
+            }
+        }
+    }
+
+    // PUT remove a spouse to a person api/groups/{groupsId}/addStaffSup/{personId}
+    public People removeSpouse(Long id) {
+        LOGGER.info("service calling removeSpouse method ==> ");
+        Optional<People> person = peopleRepository.findById(id);
+        if (person.isEmpty()) {
+            throw new InfoNotFound("person with id " + id + " not found");
+        } else {
+            person.get().removeSpouse();
+            return peopleRepository.save(person.get());
+        }
+    }
+
+    // PUT Add a child to a person api/groups/{groupsId}/addStaffSup/{personId}
+    public People removeChildById(Long id, Long childId) {
+        LOGGER.info("service calling removeChildById method ==> ");
+        Optional<People> person = peopleRepository.findById(id);
+        if (person.isEmpty()) {
+            throw new InfoNotFound("person with id " + id + " not found");
+        } else {
+            Optional<People> child = peopleRepository.findById(childId);
+            if (child.isEmpty()) {
+                throw new InfoNotFound("person with id " + childId + " not found");
+            } else {
+                person.get().removeChild(child.get());
+                return peopleRepository.save(person.get());
+            }
+        }
+    }
+
+    // PUT Add a parent to a person api/groups/{groupsId}/addStaffSup/{personId}
+    public People removeParentById(Long id, Long parentId) {
+        LOGGER.info("service calling removeParentById method ==> ");
+        Optional<People> person = peopleRepository.findById(id);
+        if (person.isEmpty()) {
+            throw new InfoNotFound("person with id " + id + " not found");
+        } else {
+            Optional<People> parent = peopleRepository.findById(parentId);
+            if (parent.isEmpty()) {
+                throw new InfoNotFound("person with id " + parentId + " not found");
+            } else {
+                person.get().removeParent(parent.get());
+                return peopleRepository.save(person.get());
+            }
+        }
+    }
+
+
+
     // DELETE a person api/people/{id}
     public String deletePersonById(Long id) {
-        LOGGER.info("service calling deleteBook method ==>");
+        LOGGER.info("service calling deletePersonById method ==>");
         Optional<People> person = peopleRepository.findById(id);
         if (person.isPresent()) {
             person.get().setDeleted(true);

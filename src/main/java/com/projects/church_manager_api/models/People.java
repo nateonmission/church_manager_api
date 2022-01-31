@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import net.minidev.json.annotate.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -15,6 +16,9 @@ public class People {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private Long id;
+
+    @Column
+    private String type;
 
     @Column
     private String firstName;
@@ -35,7 +39,17 @@ public class People {
     private boolean isDeleted = false;
 
     @ManyToMany(mappedBy = "members")
-    @JsonIgnoreProperties("members")
+    @JsonIgnoreProperties({
+            "members",
+            "spouse",
+            "children",
+            "parents",
+            "groups",
+            "staffSupervisor",
+            "leaders",
+            "memberRecord",
+            "profile"
+    })
     private Set<Groups> groups;
 
     @OneToOne(cascade = CascadeType.ALL)
@@ -46,16 +60,59 @@ public class People {
     @JoinColumn(name = "profile_Id", referencedColumnName = "id")
     private Profiles profile;
 
-    @ManyToOne()
-    @JsonIgnoreProperties({"groups", "adults"})
-    private Households household;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "spouse_Id", referencedColumnName = "id")
+    @JsonIgnoreProperties({
+            "members",
+            "spouse",
+            "children",
+            "parents",
+            "groups",
+            "staffSupervisor",
+            "leaders",
+            "memberRecord",
+            "profile"
+    })
+    private People spouse;
+
+    @ManyToMany
+    @JsonIgnoreProperties({
+            "members",
+            "spouse",
+            "children",
+            "parents",
+            "groups",
+            "staffSupervisor",
+            "leaders",
+            "memberRecord",
+            "profile"
+    })
+    private Set<People> children = new HashSet<>();
+
+    @ManyToMany
+    @JsonIgnoreProperties({
+            "members",
+            "spouse",
+            "children",
+            "parents",
+            "groups",
+            "staffSupervisor",
+            "leaders",
+            "memberRecord",
+            "profile"
+    })
+    private Set<People> parents = new HashSet<>();
+
+
+
 
 
 
     public People() {
     }
 
-    public People(String firstName, String middleName, String lastName, String phoneNumber, String emailAddress) {
+    public People(String type, String firstName, String middleName, String lastName, String phoneNumber, String emailAddress) {
+        this.type = type;
         this.firstName = firstName;
         this.middleName = middleName;
         this.lastName = lastName;
@@ -140,23 +197,50 @@ public class People {
         return groups;
     }
 
-    public void setGroups(Set<Groups> groups) {
-        this.groups = groups;
+    public void setGroups(Groups group) {
+        this.groups.add(group);
     }
 
-    public Households getHousehold() {
-        return household;
+
+    public People getSpouse() {
+        return spouse;
     }
 
-    public void setHousehold(Households household) {
-        this.household = household;
+    public void setSpouse(People spouse) {
+        this.spouse = spouse;
     }
-//
-//    public Households getHousehold() {
-//        return household;
-//    }
-//
-//    public void setHousehold(Households household) {
-//        this.household = household;
-//    }
+
+    public void removeSpouse() {
+        this.spouse = null;
+    }
+
+    public Set<People> getChildren() {
+        return children;
+    }
+
+    public void setChild(People child) {
+        this.children.add(child);
+    }
+    public void removeChild(People child) {
+        this.children.remove(child);
+    }
+
+    public Set<People> getParents() {
+        return parents;
+    }
+
+    public void setParent(People parent) {
+        this.parents.add(parent);
+    }
+    public void removeParent(People parent) {
+        this.parents.remove(parent);
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 }

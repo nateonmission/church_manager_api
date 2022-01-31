@@ -14,7 +14,7 @@ import java.util.Set;
 import java.util.logging.Logger;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/v1/")
 public class ChurchController {
     private static final Logger LOGGER = Logger.getLogger(ChurchController.class.getName());
 
@@ -25,7 +25,7 @@ public class ChurchController {
         this.churchManagerServices = churchManagerServices;
     }
 
-    @GetMapping("/")
+    @GetMapping("")
     public String isAlive(){
         LOGGER.info("calling isAlive method from controller");
         return churchManagerServices.isAlive();
@@ -45,14 +45,21 @@ public class ChurchController {
     }
 
     // GET a single Person by Email Address
-    @GetMapping(path = "/people/'{emailAddress}'")
-    public Optional getPersonByEmailAddress(@PathVariable String emailAddress) {
+    @GetMapping(path = "/people/id/{id}")
+    public People getPersonById(@PathVariable Long id) {
+        LOGGER.info("controller calling getPersonById from controller");
+        return churchManagerServices.getPersonById(id);
+    }
+
+    // GET a single Person by Email Address
+    @GetMapping(path = "/people/email/'{emailAddress}'")
+    public Set<People> getPersonByEmailAddress(@PathVariable String emailAddress) {
         LOGGER.info("controller calling getPersonByEmailAddress from controller");
         return churchManagerServices.getPersonByEmailAddress(emailAddress);
     }
 
     // GET a list of people by Phone Number
-    @GetMapping(path = "/people/tn'{phoneNumber}'")
+    @GetMapping(path = "/people/phoneNumber/'{phoneNumber}'")
     public Set<People> getPersonByPhoneNumber(@PathVariable String phoneNumber) {
         LOGGER.info("controller calling getPersonByPhoneNumber from controller");
         return churchManagerServices.getPersonByPhoneNumber(phoneNumber);
@@ -63,6 +70,48 @@ public class ChurchController {
     public People updatePersonById(@PathVariable Long id, @RequestBody People personObject) {
         LOGGER.info("controller calling updatePersonById from controller");
         return churchManagerServices.updatePersonById(id, personObject);
+    }
+
+    // Update a single Person by Id
+    @PutMapping(path = "/people/{id}/addSpouse/{spouseId}")
+    public People addSpouseById(@PathVariable Long id, @PathVariable Long spouseId) {
+        LOGGER.info("controller calling addSpouseById from controller");
+        return churchManagerServices.addSpouseById(id, spouseId);
+    }
+
+    // Update a single Person by Id
+    @PutMapping(path = "/people/{id}/addChild/{childId}")
+    public People addChildById(@PathVariable Long id, @PathVariable Long childId) {
+        LOGGER.info("controller calling addChildById from controller");
+        return churchManagerServices.addChildById(id, childId);
+    }
+
+    // Update a single Person by Id
+    @PutMapping(path = "/people/{id}/removeSpouse")
+    public People removeSpouseById(@PathVariable Long id) {
+        LOGGER.info("controller calling removeSpouse from controller");
+        return churchManagerServices.removeSpouse(id);
+    }
+
+    // Update a single Person by Id
+    @PutMapping(path = "/people/{id}/removeChild/{childId}")
+    public People removeChildById(@PathVariable Long id, @PathVariable Long childId) {
+        LOGGER.info("controller calling removeChildById from controller");
+        return churchManagerServices.removeChildById(id, childId);
+    }
+
+    // Update a single Person by Id
+    @PutMapping(path = "/people/{id}/addParent/{parentId}")
+    public People addParentById(@PathVariable Long id, @PathVariable Long parentId) {
+        LOGGER.info("controller calling addParentById from controller");
+        return churchManagerServices.addParentById(id, parentId);
+    }
+
+    // Update a single Person by Id
+    @PutMapping(path = "/people/{id}/removeParent/{parentId}")
+    public People removeParentById(@PathVariable Long id, @PathVariable Long parentId) {
+        LOGGER.info("controller calling removeParentById from controller");
+        return churchManagerServices.removeParentById(id, parentId);
     }
 
     // Delete a single Person by Id

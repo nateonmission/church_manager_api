@@ -8,7 +8,6 @@ import java.util.Set;
 
 public interface PeopleRepository extends JpaRepository<People, Long> {
     Set<People> findByPhoneNumber(String phoneNumber);
-    @Override
-    Optional<People> findById(Long id);
-    Optional<People> findByEmailAddress(String emailAddress);
+    Set<People> findByEmailAddress(String emailAddress);
+    Optional<People>  findByEmailAddressAndFirstName(String emailAddress, String firstName);
 }
