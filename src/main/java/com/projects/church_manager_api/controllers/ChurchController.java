@@ -132,7 +132,7 @@ public class ChurchController {
 
     //////////// MEMBER RECORDS ////////////
     // Update a single Person's member record by person Id
-    @PutMapping(path = "/people/{id}/member_record")
+    @PutMapping(path = "/people/{id}/memberRecord")
     public People updateMemberRecordByPersonId(@PathVariable Long id, @RequestBody MemberRecords MemberRecordObject) {
         LOGGER.info("controller calling updateProfileByPersonId from controller");
         return churchManagerServices.updateMemberRecordByPersonId(id, MemberRecordObject);
