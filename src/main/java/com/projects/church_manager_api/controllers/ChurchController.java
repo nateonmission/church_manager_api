@@ -25,12 +25,17 @@ public class ChurchController {
         this.churchManagerServices = churchManagerServices;
     }
 
+
+    String frontEnd = "http://localhost:4200";
+
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("")
     public String isAlive(){
         LOGGER.info("calling isAlive method from controller");
         return churchManagerServices.isAlive();
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping(path = "/people")
     public People createPerson(@RequestBody People personObject){
         LOGGER.info("calling createPerson method from controller");
@@ -38,6 +43,7 @@ public class ChurchController {
     }
 
     // GET All People
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/people")
     public List<People> getPeople() {
         LOGGER.info("calling getPeople method from controller");
@@ -45,6 +51,7 @@ public class ChurchController {
     }
 
     // GET a single Person by Email Address
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping(path = "/people/id/{id}")
     public People getPersonById(@PathVariable Long id) {
         LOGGER.info("controller calling getPersonById from controller");
@@ -52,6 +59,7 @@ public class ChurchController {
     }
 
     // GET a single Person by Email Address
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping(path = "/people/email/'{emailAddress}'")
     public Set<People> getPersonByEmailAddress(@PathVariable String emailAddress) {
         LOGGER.info("controller calling getPersonByEmailAddress from controller");
@@ -59,6 +67,7 @@ public class ChurchController {
     }
 
     // GET a list of people by Phone Number
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping(path = "/people/phoneNumber/'{phoneNumber}'")
     public Set<People> getPersonByPhoneNumber(@PathVariable String phoneNumber) {
         LOGGER.info("controller calling getPersonByPhoneNumber from controller");
@@ -66,6 +75,7 @@ public class ChurchController {
     }
 
     // Update a single Person by Id
+    @CrossOrigin(origins = "http://localhost:4200")
     @PutMapping(path = "/people/{id}")
     public People updatePersonById(@PathVariable Long id, @RequestBody People personObject) {
         LOGGER.info("controller calling updatePersonById from controller");
@@ -73,6 +83,7 @@ public class ChurchController {
     }
 
     // Update a single Person by Id
+    @CrossOrigin(origins = "http://localhost:4200")
     @PutMapping(path = "/people/{id}/addSpouse/{spouseId}")
     public People addSpouseById(@PathVariable Long id, @PathVariable Long spouseId) {
         LOGGER.info("controller calling addSpouseById from controller");
@@ -80,6 +91,7 @@ public class ChurchController {
     }
 
     // Update a single Person by Id
+    @CrossOrigin(origins = "http://localhost:4200")
     @PutMapping(path = "/people/{id}/addChild/{childId}")
     public People addChildById(@PathVariable Long id, @PathVariable Long childId) {
         LOGGER.info("controller calling addChildById from controller");
@@ -87,6 +99,7 @@ public class ChurchController {
     }
 
     // Update a single Person by Id
+    @CrossOrigin(origins = "http://localhost:4200")
     @PutMapping(path = "/people/{id}/removeSpouse")
     public People removeSpouseById(@PathVariable Long id) {
         LOGGER.info("controller calling removeSpouse from controller");
@@ -94,6 +107,7 @@ public class ChurchController {
     }
 
     // Update a single Person by Id
+    @CrossOrigin(origins = "http://localhost:4200")
     @PutMapping(path = "/people/{id}/removeChild/{childId}")
     public People removeChildById(@PathVariable Long id, @PathVariable Long childId) {
         LOGGER.info("controller calling removeChildById from controller");
@@ -101,6 +115,7 @@ public class ChurchController {
     }
 
     // Update a single Person by Id
+    @CrossOrigin(origins = "http://localhost:4200")
     @PutMapping(path = "/people/{id}/addParent/{parentId}")
     public People addParentById(@PathVariable Long id, @PathVariable Long parentId) {
         LOGGER.info("controller calling addParentById from controller");
@@ -108,6 +123,7 @@ public class ChurchController {
     }
 
     // Update a single Person by Id
+    @CrossOrigin(origins = "http://localhost:4200")
     @PutMapping(path = "/people/{id}/removeParent/{parentId}")
     public People removeParentById(@PathVariable Long id, @PathVariable Long parentId) {
         LOGGER.info("controller calling removeParentById from controller");
@@ -116,6 +132,7 @@ public class ChurchController {
 
     // Delete a single Person by Id
     @DeleteMapping(path = "/people/{id}")
+    @CrossOrigin(origins = "http://localhost:4200")
     public String deletePersonById(@PathVariable Long id) {
         LOGGER.info("controller calling deletePersonById from controller");
         return churchManagerServices.deletePersonById(id);
@@ -123,6 +140,7 @@ public class ChurchController {
 
     //////////// PROFILES ////////////
     // Update a single Person's profile by person Id
+    @CrossOrigin(origins = "http://localhost:4200")
     @PutMapping(path = "/people/{id}/profile")
     public People updateProfileByPersonId(@PathVariable Long id, @RequestBody Profiles profileObject) {
         LOGGER.info("controller calling updateProfileByPersonId from controller");
@@ -132,6 +150,7 @@ public class ChurchController {
 
     //////////// MEMBER RECORDS ////////////
     // Update a single Person's member record by person Id
+    @CrossOrigin(origins = "http://localhost:4200")
     @PutMapping(path = "/people/{id}/memberRecord")
     public People updateMemberRecordByPersonId(@PathVariable Long id, @RequestBody MemberRecords MemberRecordObject) {
         LOGGER.info("controller calling updateProfileByPersonId from controller");
@@ -140,18 +159,21 @@ public class ChurchController {
 
 
     ///////// GROUPS /////////
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping(path = "/groups")
     public Groups createGroup(@RequestBody Groups groupObject){
         LOGGER.info("calling createGroup method from controller");
         return churchManagerServices.createGroup(groupObject);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping(path = "/groups")
     public List<Groups> getAllGroups(){
         LOGGER.info("calling getAllGroups method from controller");
         return churchManagerServices.getAllGroups();
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping(path = "/groups/{id}")
     public Groups getGroupById(@PathVariable Long id){
         LOGGER.info("calling getGroupById method from controller");
@@ -159,6 +181,7 @@ public class ChurchController {
     }
 
     // Update a single group by Id
+    @CrossOrigin(origins = "http://localhost:4200")
     @PutMapping(path = "/groups/{id}")
     public Groups updateGroupById(@PathVariable Long id, @RequestBody Groups groupObject) {
         LOGGER.info("controller calling updateGroupById from controller");
@@ -166,6 +189,7 @@ public class ChurchController {
     }
 
     // Delete a single Person by Id
+    @CrossOrigin(origins = "http://localhost:4200")
     @DeleteMapping(path = "/groups/{id}")
     public String deleteGroupById(@PathVariable Long id) {
         LOGGER.info("controller calling deleteGroupById from controller");
@@ -173,36 +197,42 @@ public class ChurchController {
     }
 
     // Add a Staff Supervisor to a single group by Id
+    @CrossOrigin(origins = "http://localhost:4200")
     @PutMapping(path = "/groups/{groupId}/addStaffSup/{personId}")
     public Groups addStaffSupToGroupById(@PathVariable Long groupId, @PathVariable Long personId){
         return churchManagerServices.addStaffSupToGroupById(groupId, personId);
     }
 
     // Add a Staff Supervisor to a single group by Id
+    @CrossOrigin(origins = "http://localhost:4200")
     @PutMapping(path = "/groups/{groupId}/removeStaffSup")
     public Groups removeStaffSupFromGroup(@PathVariable Long groupId){
         return churchManagerServices.removeStaffSupFromGroup(groupId);
     }
 
     // Add a Staff Supervisor to a single group by Id
+    @CrossOrigin(origins = "http://localhost:4200")
     @PutMapping(path = "/groups/{groupId}/addMember/{personId}")
     public Groups addMemberToGroupById(@PathVariable Long groupId, @PathVariable Long personId){
         return churchManagerServices.addMemberToGroupById(groupId, personId);
     }
 
     // Remove a member from a single group by Id
+    @CrossOrigin(origins = "http://localhost:4200")
     @PutMapping(path = "/groups/{groupId}/removeMember/{personId}")
     public Groups removeMemberFromGroupById(@PathVariable Long groupId, @PathVariable Long personId){
         return churchManagerServices.removeMemberFromGroupById(groupId, personId);
     }
 
     // Add a Staff Supervisor to a single group by Id
+    @CrossOrigin(origins = "http://localhost:4200")
     @PutMapping(path = "/groups/{groupId}/addLeader/{personId}")
     public Groups addLeaderToGroupById(@PathVariable Long groupId, @PathVariable Long personId){
         return churchManagerServices.addLeaderToGroupById(groupId, personId);
     }
 
     // Remove a member from a single group by Id
+    @CrossOrigin(origins = "http://localhost:4200")
     @PutMapping(path = "/groups/{groupId}/removeLeader/{personId}")
     public Groups removeLeaderFromGroupById(@PathVariable Long groupId, @PathVariable Long personId){
         return churchManagerServices.removeLeaderFromGroupById(groupId, personId);
