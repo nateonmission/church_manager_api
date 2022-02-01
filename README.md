@@ -3,6 +3,8 @@
 ## Introduction 
 
 
+[Front-end GitHub Repo link](https://github.com/nateonmission/church_manager_front-end)
+
 ## Technology
 
 
