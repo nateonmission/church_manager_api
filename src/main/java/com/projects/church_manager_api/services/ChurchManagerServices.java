@@ -160,7 +160,9 @@ public class ChurchManagerServices {
             person.get().setFirstName(bookObject.getFirstName());
             person.get().setMiddleName(bookObject.getMiddleName());
             person.get().setLastName(bookObject.getLastName());
+            person.get().setEmailAddress(bookObject.getEmailAddress());
             person.get().setPhoneNumber(bookObject.getPhoneNumber());
+            person.get().setType(bookObject.getType());
             return peopleRepository.save(person.get());
         }
     }
