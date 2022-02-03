@@ -91,7 +91,7 @@ public class ChurchController {
     }
 
     // Update a single Person by Id
-    @CrossOrigin(origins = "http://localhost:4200/people")
+    @CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
     @PutMapping(path = "/people/{id}/addChild/{childId}")
     public People addChildById(@PathVariable Long id, @PathVariable Long childId) {
         LOGGER.info("controller calling addChildById from controller");
