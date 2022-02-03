@@ -9,4 +9,5 @@ import java.util.Set;
 
 public interface GroupsRepository extends JpaRepository<Groups, Long> {
     Optional<Groups> findByName(String name);
+    Set<Groups> findByType(String type);
 }

@@ -180,6 +180,13 @@ public class ChurchController {
         return churchManagerServices.getGroupById(id);
     }
 
+    @CrossOrigin(origins = "*")
+    @GetMapping(path = "/groups/type")
+    public Set<Groups> getGroupById(@PathVariable String type){
+        LOGGER.info("calling getGroupById method from controller");
+        return churchManagerServices.getGroupsByType(type);
+    }
+
     // Update a single group by Id
     @CrossOrigin(origins = "*")
     @PutMapping(path = "/groups/{id}")

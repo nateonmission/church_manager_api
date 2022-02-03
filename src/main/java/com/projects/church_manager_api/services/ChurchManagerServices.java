@@ -65,7 +65,7 @@ public class ChurchManagerServices {
             if(person.get().isDeleted()){
                 person.get().setDeleted(false);
                 return peopleRepository.save(personObject);
-                
+
             } else {
 
                 throw new InfoAlreadyExists("Person with email "
@@ -380,6 +380,16 @@ public class ChurchManagerServices {
             return group.get();
         } else {
             throw new InfoNotFound("Group with ID " + id + "not found");
+        }
+    }
+
+    public Set<Groups> getGroupsByType(String type) {
+        LOGGER.info("service calling getGroupByType ==>");
+        Set<Groups> groups = groupsRepository.findByType(type);
+        if (!groups.isEmpty()) {
+            return groups;
+        } else {
+            throw new InfoNotFound("Groups with type " + type + "not found");
         }
     }
 
