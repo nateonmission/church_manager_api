@@ -64,7 +64,8 @@ public class ChurchManagerServices {
         if (person.isPresent() ) {
             if(person.get().isDeleted()){
                 person.get().setDeleted(false);
-                return person.get();
+                return peopleRepository.save(personObject);
+                
             } else {
 
                 throw new InfoAlreadyExists("Person with email "
