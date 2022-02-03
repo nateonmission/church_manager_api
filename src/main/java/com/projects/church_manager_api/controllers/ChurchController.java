@@ -133,7 +133,7 @@ public class ChurchController {
     // Delete a single Person by Id
     @DeleteMapping(path = "/people/{id}")
     @CrossOrigin(origins = "*")
-    public String deletePersonById(@PathVariable Long id) {
+    public People deletePersonById(@PathVariable Long id) {
         LOGGER.info("controller calling deletePersonById from controller");
         return churchManagerServices.deletePersonById(id);
     }

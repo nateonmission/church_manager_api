@@ -267,14 +267,13 @@ public class ChurchManagerServices {
 
 
     // DELETE a person api/people/{id}
-    public String deletePersonById(Long id) {
+    public People deletePersonById(Long id) {
         LOGGER.info("service calling deletePersonById method ==>");
         Optional<People> person = peopleRepository.findById(id);
         if (person.isPresent()) {
             person.get().setDeleted(true);
             peopleRepository.save(person.get());
-            return (person.get().getFirstName()) + " " + (person.get().getLastName()) + " -- REMOVED = "
-                    + person.get().isDeleted();
+            return person.get();
         } else {
             throw new InfoNotFound("person with id: "
                     + id + " does NOT exist");
