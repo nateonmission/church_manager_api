@@ -174,7 +174,7 @@ public class ChurchController {
     }
 
     @CrossOrigin(origins = "*")
-    @GetMapping(path = "/groups/{id}")
+    @GetMapping(path = "/groups/id/{id}")
     public Groups getGroupById(@PathVariable Long id){
         LOGGER.info("calling getGroupById method from controller");
         return churchManagerServices.getGroupById(id);
