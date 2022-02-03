@@ -182,9 +182,16 @@ public class ChurchController {
 
     @CrossOrigin(origins = "*")
     @GetMapping(path = "/groups/type/'{type}'")
-    public Set<Groups> getGroupById(@PathVariable String type){
-        LOGGER.info("calling getGroupById method from controller");
+    public Set<Groups> getGroupByType(@PathVariable String type){
+        LOGGER.info("calling getGroupsByType method from controller");
         return churchManagerServices.getGroupsByType(type);
+    }
+
+    @CrossOrigin(origins = "*")
+    @GetMapping(path = "/groups/name/'{name}'")
+    public Groups getGroupByName(@PathVariable String name){
+        LOGGER.info("calling getGroupByName method from controller");
+        return churchManagerServices.getGroupByName(name);
     }
 
     // Update a single group by Id

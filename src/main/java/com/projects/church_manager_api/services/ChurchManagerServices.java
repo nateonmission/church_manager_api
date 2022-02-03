@@ -393,6 +393,16 @@ public class ChurchManagerServices {
         }
     }
 
+    public Groups getGroupByName(String name) {
+        LOGGER.info("service calling getGroupByName ==>");
+        Optional<Groups> group = groupsRepository.findByName(name);
+        if (group.isPresent()) {
+            return group.get();
+        } else {
+            throw new InfoNotFound("Group with name " + name + "not found");
+        }
+    }
+
     // PUT update a book api/person/{book_ID}
     public Groups updateGroupById(Long id, Groups groupObject) {
         LOGGER.info("service calling updateGroupById method ==> ");
