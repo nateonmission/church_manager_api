@@ -51,7 +51,19 @@ https://church-mgr-proj.herokuapp.com/api/v1/
 | PUT    | /groups/{id}/removeMember/{id}      | Removes an individual Member from the group             ||
 
 ## Problems and Overcoming Them
+### Back-End
+* One-to-one relationships
+* One-to-many relationships
+* CORS permissions
+* Learning what JPA can and can't do
+* Java deployment on Heroku
 
+### Front-End
+* Getting a grasp on Observables
+* Dealing with variably formatted JSON received from API
+* Form behavior in Angular
+* More CORS issues
+* Angular deployment on Heroku
 
 ## Future Opportunities
 
