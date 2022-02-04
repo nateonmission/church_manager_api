@@ -52,7 +52,8 @@ public class ChurchManagerServices {
 
     public String isAlive() {
         LOGGER.info("calling isAlive method ==>");
-        return "{I'm Alive}";
+        String returnStr = "[{\"message\":\"I'm Alive\"}]";
+        return returnStr;
     }
 
     //////////// PEOPLE ////////////
