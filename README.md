@@ -5,7 +5,7 @@ More information on the front-end can be found here:
 
 ## Introduction 
 Medium-sized churches frequently have difficult keeping track of their members and small-groups. This application seeks to help in that area by making it easier for church staff to track membership (including family relationships) and small-groups composition.
-<br><br>[More on planning this project]("https://github.com/nateonmission/church_manager_api/blob/master/planning/planning.md")
+<br><br>[More on planning this project](https://github.com/nateonmission/church_manager_api/blob/master/planning/planning.md)
 ## Technology
 The back-end API is a Java application built using the Spring Boot Framework to simplify the data connection. The Database itself is Postgres. The front-end is built with Angular. The IDEs that I used were JetBrains IntelliJ for the Java API and Microsoft's Visual Studio Code for the Angular components. Other tools used during development include Postman (for testing the API endpoints) and PGAdmin (for managing the Postgres DB). Both sides of the app will be deployed on Heroku.
 
