@@ -19,6 +19,6 @@ As an administrator,
 * I can delete PEOPLE and GROUP records.
 
 ## Database Planning
-![Person ERD](https://github.com/nateonmission/church_manager_api/tree/master/planning/IMG_8855.jpg "PEOPLE ERD")
-![Group ERD](https://github.com/nateonmission/church_manager_api/tree/master/planning/IMG_8856.jpg "GROUP ERD")
+[[https://github.com/nateonmission/church_manager_api/planning/IMG_8855.jpg|PEOPLE ERD]]
+[[https://github.com/nateonmission/church_manager_api/planning/IMG_8856.jpg|GROUP ERD]]
   
