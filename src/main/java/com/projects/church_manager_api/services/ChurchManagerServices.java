@@ -50,10 +50,10 @@ public class ChurchManagerServices {
     }
 
 
-    public String isAlive() {
+    public boolean isAlive() {
         LOGGER.info("calling isAlive method ==>");
         String returnStr = "[{\"message\":\"I'm Alive\"}]";
-        return returnStr;
+        return true;
     }
 
     //////////// PEOPLE ////////////

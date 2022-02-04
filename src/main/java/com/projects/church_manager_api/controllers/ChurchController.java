@@ -30,7 +30,7 @@ public class ChurchController {
 
     @CrossOrigin(origins = "*")
     @GetMapping("")
-    public String isAlive(){
+    public boolean isAlive(){
         LOGGER.info("calling isAlive method from controller");
         return churchManagerServices.isAlive();
     }
