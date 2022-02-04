@@ -66,4 +66,8 @@ https://church-mgr-proj.herokuapp.com/api/v1/
 * Angular deployment on Heroku
 
 ## Future Opportunities
-
+* Finish the front-end deployment
+* Make it easier to search for people by name
+* Better form validation
+* Authentication and Authorization
+* More interesting styling
