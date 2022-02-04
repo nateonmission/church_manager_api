@@ -1,15 +1,16 @@
 # Church Management Application
 
-## Introduction 
-
-
+More information on the front-end can be found here:
 [Front-end GitHub Repo link](https://github.com/nateonmission/church_manager_front-end)
 
-## Technology
+## Introduction 
+Medium-sized churches frequently have difficult keeping track of their members and small-groups. This application seeks to help in that area by making it easier for church staff to track membership (including family relationships) and small-groups composition.
 
+## Technology
+The back-end API is a Java application built using the Spring Boot Framework to simplify the data connection. The Database itself is Postgres. The front-end is built with Angular. The IDEs that I used were JetBrains IntelliJ for the Java API and Microsoft's Visual Studio Code for the Angular components. Other tools used during development include Postman (for testing the API endpoints) and PGAdmin (for managing the Postgres DB). Both sides of the app will be deployed on Heroku.
 
 ## Installation
-
+In order to run this API locally, you will need to have downloaded and installed a Java Development Kit (JDK) and the IntelliJ IDE. Once everything is installed, IntelliJ should help you get the Maven dependencies installed. Then, you will need to provide access to a Postgres DB. Now, you can run it locally. If you choose to, You can use Heroku's git option and push your fork up. Heroku will compile and attach a DB automatically.
 
 ## Use of the Application
 
