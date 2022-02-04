@@ -13,7 +13,7 @@ The back-end API is a Java application built using the Spring Boot Framework to 
 In order to run this API locally, you will need to have downloaded and installed a Java Development Kit (JDK) and the IntelliJ IDE. Once everything is installed, IntelliJ should help you get the Maven dependencies installed. Then, you will need to provide access to a Postgres DB. Now, you can run it locally. If you choose to, You can use Heroku's git option and push your fork up. Heroku will compile and attach a DB automatically.
 
 ## Use of the Application
-
+When you load the splash page and login, you will be greeted with a HOME page. Click PEOPLE to begin adding Members, Attenders, Children/Youth, and Staff. Click on GROUPS to create Sunday School Classes, Mid-week groups, or other affinity groups. Then on the PEOPLE tab, you can link children, parents, and spouses. On the GROUPS page, you can link group members, volunteer leaders, and staff supervisor. There is a DELETE page if you need to delete a person or group.
 
 ## API URL and Endpoints
 ``
