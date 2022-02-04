@@ -52,7 +52,7 @@ public class ChurchManagerServices {
 
     public String isAlive() {
         LOGGER.info("calling isAlive method ==>");
-        return "<h1>I'm Alive</h1>";
+        return "{I'm Alive}";
     }
 
     //////////// PEOPLE ////////////
