@@ -19,6 +19,6 @@ As an administrator,
 * I can delete PEOPLE and GROUP records.
 
 ## Database Planning
-[[./IMG_8855.jpg]]
-[[./planning/IMG_8856.jpg]]
+<img src="https://i.imgur.com/FjtTXOQ.jpg">
+<img src="https://i.imgur.com/noVgrsS.jpg">
   
